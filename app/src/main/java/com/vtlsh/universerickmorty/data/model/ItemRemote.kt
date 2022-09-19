@@ -2,6 +2,7 @@ package com.vtlsh.universerickmorty.data.model
 
 
 import com.beust.klaxon.*
+import com.vtlsh.universerickmorty.R
 
 private fun <T> Klaxon.convert(k: kotlin.reflect.KClass<*>, fromJson: (JsonValue) -> T, toJson: (T) -> String, isUnion: Boolean = false) =
     this.converter(object: Converter {
@@ -82,16 +83,16 @@ enum class Species(val value: String) {
     }
 }
 
-enum class Status(val value: String) {
-    Alive("Alive"),
-    Dead("Dead"),
-    Unknown("unknown");
+enum class Status(val value: String, val color: Int) {
+    Alive("Alive", R.color.alive),
+    Dead("Dead", R.color.dead),
+    unknown("Unknown", R.color.unknown);
 
     companion object {
         fun fromValue(value: String): Status = when (value) {
             "Alive"   -> Alive
             "Dead"    -> Dead
-            "unknown" -> Unknown
+            "Unknown" -> unknown
             else      -> throw IllegalArgumentException()
         }
     }

@@ -2,38 +2,58 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:padding="16dp"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="24dp">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="32dp"
+    <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewElevatedStyle"
+        android:layout_width="150dp"
+        android:layout_height="225dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:elevation="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="false"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="32dp"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/black"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Media -->
+            <ImageView
+                android:id="@+id/ivMainIcon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/ic_main_card_title_bg"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtMainTitle"
+                style="@style/Text_Title_18"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cursorVisible="false"
+                android:gravity="center"
+                android:text="title" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

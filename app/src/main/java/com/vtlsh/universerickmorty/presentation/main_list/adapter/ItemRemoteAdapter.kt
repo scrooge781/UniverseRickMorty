@@ -1,11 +1,12 @@
 package com.vtlsh.universerickmorty.presentation.main_list.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.vtlsh.universerickmorty.R
 import com.vtlsh.universerickmorty.data.model.Result
 import com.vtlsh.universerickmorty.databinding.ItemRemoteBinding
 
@@ -30,11 +31,18 @@ class ItemRemoteAdapter(var clickCallback: ((Result) -> Unit)) :
 
         fun bind(item: Result) {
             binding.apply {
-                name.text = item.name
-                status.text = item.status.value
-                status.setOnClickListener {
+                txtMainTitle.text = item.name
+                val colorStatus = binding.root.resources.getColor(item.status.color)
+                txtMainTitle.setTextColor(colorStatus)
+                txtMainTitle.setOnClickListener {
                     clickCallback.invoke(item)
                 }
+                Glide
+                    .with(binding.root)
+                    .load(item.image)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_default_icon)
+                    .into(ivMainIcon)
             }
         }
     }

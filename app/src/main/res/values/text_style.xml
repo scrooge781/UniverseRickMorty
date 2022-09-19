@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text_Main_Title" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="Text_Title_18" parent="Text_Main_Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowDx">2.3</item>
+        <item name="android:shadowDy">2.5</item>
+        <item name="android:shadowRadius">2.8</item>
+    </style>
+
+</resources>
