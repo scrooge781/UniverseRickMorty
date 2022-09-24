@@ -1,14 +1,16 @@
 package com.vtlsh.universerickmorty.presentation.main_list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigator
+import androidx.navigation.fragment.findNavController
 import com.vtlsh.universerickmorty.data.model.Result
-import com.vtlsh.universerickmorty.presentation.MainViewModel
 import com.vtlsh.universerickmorty.databinding.FragmentMainListBinding
+import com.vtlsh.universerickmorty.presentation.MainViewModel
 import com.vtlsh.universerickmorty.presentation.main_list.adapter.ItemRemoteAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,8 +57,9 @@ class MainListFragment : Fragment() {
 
     }
 
-    private fun clickCallback(result: Result) {
-        println("hello")
+    private fun clickCallback(result: Result, extras: Navigator.Extras) {
+        val action = MainListFragmentDirections.actionMainListFragmentToDetailFragment(result)
+        findNavController().navigate(action, extras)
     }
 
     override fun onDestroy() {

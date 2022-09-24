@@ -2,15 +2,16 @@ package com.vtlsh.universerickmorty.presentation.main_list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.vtlsh.universerickmorty.R
 import com.vtlsh.universerickmorty.data.model.Result
 import com.vtlsh.universerickmorty.databinding.ItemRemoteBinding
+import com.vtlsh.universerickmorty.util.load
 
-class ItemRemoteAdapter(var clickCallback: ((Result) -> Unit)) :
+class ItemRemoteAdapter(var clickCallback: ((Result, FragmentNavigator.Extras) -> Unit)) :
     ListAdapter<Result, ItemRemoteAdapter.ItemRemoteViewHolder>(ItemRemoteDiffCallback()) {
 
 
@@ -18,12 +19,12 @@ class ItemRemoteAdapter(var clickCallback: ((Result) -> Unit)) :
         parent: ViewGroup,
         viewType: Int
     ): ItemRemoteAdapter.ItemRemoteViewHolder {
-        var binding = ItemRemoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemRemoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemRemoteViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ItemRemoteAdapter.ItemRemoteViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class ItemRemoteViewHolder(private val binding: ItemRemoteBinding) :
@@ -34,15 +35,13 @@ class ItemRemoteAdapter(var clickCallback: ((Result) -> Unit)) :
                 txtMainTitle.text = item.name
                 val colorStatus = binding.root.resources.getColor(item.status.color)
                 txtMainTitle.setTextColor(colorStatus)
-                txtMainTitle.setOnClickListener {
-                    clickCallback.invoke(item)
+
+                ivMainIcon.apply {
+                    load(item.image)
+                    transitionName = item.image
                 }
-                Glide
-                    .with(binding.root)
-                    .load(item.image)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_default_icon)
-                    .into(ivMainIcon)
+                val extras = FragmentNavigatorExtras(ivMainIcon to item.image)
+                mcMainCard.setOnClickListener { clickCallback.invoke(item, extras) }
             }
         }
     }

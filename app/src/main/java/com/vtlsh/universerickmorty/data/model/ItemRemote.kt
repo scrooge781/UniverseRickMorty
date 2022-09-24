@@ -3,6 +3,8 @@ package com.vtlsh.universerickmorty.data.model
 
 import com.beust.klaxon.*
 import com.vtlsh.universerickmorty.R
+import kotlinx.android.parcel.Parcelize
+import android.os.Parcelable
 
 private fun <T> Klaxon.convert(k: kotlin.reflect.KClass<*>, fromJson: (JsonValue) -> T, toJson: (T) -> String, isUnion: Boolean = false) =
     this.converter(object: Converter {
@@ -35,6 +37,7 @@ data class Info (
     val prev: Any? = null
 )
 
+@Parcelize
 data class Result (
     val id: Long,
     val name: String,
@@ -48,7 +51,7 @@ data class Result (
     val episode: List<String>,
     val url: String,
     val created: String
-)
+) : Parcelable
 
 enum class Gender(val value: String) {
     Female("Female"),
@@ -65,10 +68,11 @@ enum class Gender(val value: String) {
     }
 }
 
+@Parcelize
 data class Location (
     val name: String,
     val url: String
-)
+) : Parcelable
 
 enum class Species(val value: String) {
     Alien("Alien"),
