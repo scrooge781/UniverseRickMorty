@@ -9,5 +9,6 @@ class NetworkUseCase @Inject constructor(
 
     suspend fun getCharacter() = apiService.getCharacter()
 
+    suspend fun getEpisode(episodeId: String) = apiService.getEpisode(episodeId)
 
 }

@@ -10,4 +10,5 @@
     <color name="alive">#05FF2D</color>
     <color name="dead">#FF0505</color>
     <color name="unknown">#797979</color>
+    <color name="text_detail_description">#797979</color>
 </resources>

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vtlsh.universerickmorty.business.ItemUseCase
 import com.vtlsh.universerickmorty.business.NetworkUseCase
+import com.vtlsh.universerickmorty.data.model.Episode
 import com.vtlsh.universerickmorty.data.model.ItemRemote
 import com.vtlsh.universerickmorty.data.model.Item
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,9 @@ class MainViewModel @Inject constructor(
     private val _itemsRemoteData = MutableLiveData<ItemRemote>()
     val itemsRemoteData: LiveData<ItemRemote> get() = _itemsRemoteData
 
+    private val _episodeRemoteData = MutableLiveData<Episode>()
+    val episodeRemoteData: LiveData<Episode> get() = _episodeRemoteData
+
 
     fun getItemLocalList() {
         viewModelScope.launch {
@@ -34,7 +38,14 @@ class MainViewModel @Inject constructor(
     fun getCharacter() {
         viewModelScope.launch {
             val result = networkUseCase.getCharacter().body()
-            _itemsRemoteData.postValue(result!!)
+            result?.let { _itemsRemoteData.postValue(it) }
+        }
+    }
+
+    fun getEpisode(episodeId: String) {
+        viewModelScope.launch {
+            val result = networkUseCase.getEpisode(episodeId).body()
+            result?.let {  _episodeRemoteData.postValue(it) }
         }
     }
 

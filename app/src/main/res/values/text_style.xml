@@ -14,4 +14,19 @@
         <item name="android:shadowRadius">2.8</item>
     </style>
 
+    <style name="Text_Detail_Title_36" parent="Text_Main_Title">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="Text_Detail_18" parent="Text_Main_Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">-4sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="Text_Description_14" parent="Text_Main_Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">22sp</item>
+        <item name="android:textColor">@color/text_detail_description</item>
+    </style>
+
 </resources>

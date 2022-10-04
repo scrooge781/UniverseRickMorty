@@ -87,10 +87,10 @@ enum class Species(val value: String) {
     }
 }
 
-enum class Status(val value: String, val color: Int) {
-    Alive("Alive", R.color.alive),
-    Dead("Dead", R.color.dead),
-    unknown("Unknown", R.color.unknown);
+enum class Status(val value: String, val color: Int, val gradient: Int) {
+    Alive("Alive", R.color.alive, R.drawable.alive_gradient),
+    Dead("Dead", R.color.dead, R.drawable.dead_gradient),
+    unknown("Unknown", R.color.unknown, R.drawable.unknown_gradient);
 
     companion object {
         fun fromValue(value: String): Status = when (value) {

@@ -43,3 +43,7 @@ fun ImageView.load(url: String, loadOnlyFromCache: Boolean = false, onLoadingFin
         .listener(listener)
         .into(this)
 }
+
+fun getEpisode(episodeUrl: String?): String {
+    return episodeUrl?.substringAfterLast("/") ?: ""
+}
